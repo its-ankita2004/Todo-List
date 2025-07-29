@@ -24,7 +24,6 @@ export class AddTodo {
 
   }
 onsubmit() {
-  console.log(this.addTodoForm);
   // If no field is touched and button is pressed
   if (
     !this.addTodoForm.controls['title']?.touched &&

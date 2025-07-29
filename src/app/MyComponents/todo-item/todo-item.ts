@@ -21,11 +21,9 @@ export class TodoItem implements OnInit{
   }
       
   ngOnInit(): void{
-   console.log(this.todo)    
   }
   onClick(todo: Todo ){
     this.todoDelete.emit(todo);
-    console.log("onClick has been triggerd")
   }
 
    onCheckboxClick(todo:Todo){

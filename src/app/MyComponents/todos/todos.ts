@@ -28,13 +28,11 @@ export class Todos {
   }
 }
   deleteTodo(todo: Todo) {
-    console.log(todo);
     const index = this.todos.indexOf(todo);
     this.todos.splice(index, 1);
     localStorage.setItem("todos",JSON.stringify(this.todos));
   }
   addTodo(todo:Todo){
-    console.log('New Todo:',todo);
     this.todos.push(todo);
      localStorage.setItem("todos",JSON.stringify(this.todos));
     
