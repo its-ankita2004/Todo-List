@@ -1,9 +1,10 @@
+<div class="add-todo">
 <div class="my-3">
 <h4>Add a Todo</h4>
 <form #addTodoForm="ngForm" (ngSubmit)="onsubmit()">
   <div class="mb-3">
     <label for="title" class="form-label">Todo Title</label>
-    <input type="text" [(ngModel)]="title" class="form-control" id="title" name= "title" required>
+    <input type="text" [(ngModel)]="title" class="form-control" id="title" name="title" required>
         @if (addTodoForm.touched  && !addTodoForm.controls['title'].value) {
       <mat-error>title is required.</mat-error>
     }
@@ -18,4 +19,5 @@
   </div>
   <button type="submit" class="btn btn-primary">Add todo</button>
 </form>
+</div>
 </div>

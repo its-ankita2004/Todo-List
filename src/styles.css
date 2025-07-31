@@ -1,1 +1,143 @@
-/* You can add global styles to this file, and also import other style files */
+/* Full viewport height layout with Flexbox */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #667eea, #764ba2); /* indigo + violet */
+  background-attachment: fixed;
+}
+
+/* Layout wrapper to apply Flex behavior */
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: linear-gradient(to right, #764ba2, #667eea);  
+  color: rgb(28, 47, 41);
+  padding: 5px 0;
+  text-align: center;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+  .app-header h1 {
+    color: #ffffff;
+    text-shadow: 0 0 6px #bbebfc3b, 0 0 6px #bbf1fc;
+    font-family: cursive;
+    margin-bottom: 0.9rem;
+
+}
+.logo {
+  border-radius: 8px; /* optional: rounded corners */
+  background: transparent;
+  margin-left: -28px;
+  margin-bottom: 5px;
+}
+/* Main content should grow to fill space */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Actual visual box for login */
+.login-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+}
+
+.main-content input[type="email"],
+.main-content input[type="password"] {
+  width: 100%;           /* Full width */
+  padding: 10px 15px;    /* More padding for height */
+  font-size: 1.1rem;     /* Slightly bigger text */
+  border-radius: 8px;    /* Rounded corners */
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.add-todo input[type="text"] {
+  width: 100%;           /* Full width */
+  padding: 10px 25px;    /* More padding for height */
+  font-size: 1.1rem;     /* Slightly bigger text */
+  border-radius: 8px;    /* Rounded corners */
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* Add label styling to align and space properly */
+.main-content label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+/* Footer sticks at bottom */
+.app-footer {
+  background-color: #333;
+  color: #eee;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 0.95rem;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Footer link styles */
+.app-footer a {
+  color: #96e6a1;
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+ @media (max-width: 400px) {
+  .container {
+    padding: 20px;
+    margin: 10px;
+  }
+
+
+  .app-header h1 {
+    font-size: 1.6rem;
+  }
+} 
+
+.todos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 65vh;
+  min-width: 900px;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+}
+
+
+

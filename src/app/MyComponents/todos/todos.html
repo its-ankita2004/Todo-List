@@ -5,7 +5,7 @@
 </ul> --> 
 
 <!-- New Syntax -->
-
+<div class="todos-container">
 <app-add-todo (todoAdd)="addTodo($event)" ></app-add-todo>
 <h4>Your todos</h4>
 @if (todos.length === 0) {
@@ -22,3 +22,4 @@
     }
   </div>
 }
+</div>
