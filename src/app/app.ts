@@ -6,10 +6,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login';
 import { RegisterComponent } from "./register/register";
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Todos, FormsModule, HttpClientModule, LoginComponent, RegisterComponent],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
