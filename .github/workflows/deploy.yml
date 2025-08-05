@@ -3,26 +3,28 @@ name: Deploy Angular App to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # 🚨 deploys on push to main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: ⬇️ Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 22
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm install
 
-      - name: Build Angular app
-        run: npm run build -- --configuration production --base-href /Todo-List/
+      - name: 🏗️ Build project
+        run: npm run build -- --configuration production
 
-      - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/Todo-List
+      - name: 🚀 Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Deployment branch
+          folder: dist/Todo-List/browser  # Output folder (Check `angular.json` build path)
