@@ -21,10 +21,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: npm run build -- --base-href=/Todo-List/
-
-      - name: 🏗️ Build project
-        run: npm run build -- --configuration production
+        run: npm run build -- --base-href=/Todo-List/ --configuration production
 
       - name: 🚀 Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
