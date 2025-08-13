@@ -14,7 +14,7 @@ export interface AuthResponse {
   providedIn: 'root'
 })
 export class Auth {
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'https://fastapi-auth-aq3c.onrender.com';
 
   constructor(private http: HttpClient) { }
 
