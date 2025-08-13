@@ -37,15 +37,16 @@ export class App {
    isLoginRoute = false;
 
    constructor(private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // Adjust the condition to match your login route path exactly
-        this.isLoginRoute = (event.url === '/login'|| event.url === '/register')? true : false;
-      }
-    });
-  }
+  //  Check immediately on load
+  const currentUrl = this.router.url;
+  this.isLoginRoute = currentUrl === '/login' || currentUrl === '/register';
+
+  //  Keep listening for changes after that
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      this.isLoginRoute = event.url === '/login' || event.url === '/register';
+    }
+  });
 }
-// function NgModule(arg0: { declarations: any[]; imports: (typeof BrowserModule)[]; providers: never[]; bootstrap: ComponentDecorator[]; }): (target: typeof AppModule) => void | typeof AppModule {
-//   throw new Error('Function not implemented.');
-// }
+}
 
