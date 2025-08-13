@@ -3,28 +3,38 @@ name: Deploy Angular App to GitHub Pages
 on:
   push:
     branches:
-      - main  # 🚨 deploys on push to main branch
+      - main
+
+permissions:
+  contents: write  # allow the action to push to gh-pages
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
 
-      - name: ⬇️ Setup Node.js
-        uses: actions/setup-node@v3
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⬇ Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
 
       - name: 📦 Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build Angular app
-        run: npm run build -- --base-href=/Todo-List/ --configuration production
+      - name: 🏗️ Build Angular app (sets correct base-href)
+        run: npm run build -- --configuration production --base-href=/Todo-List/
+
+      # SPA routing fix: make refresh on deep links work on GitHub Pages
+      - name: 🔁 Copy index.html to 404.html
+        run: cp dist/Todo-List/browser/index.html dist/Todo-List/browser/404.html
 
       - name: 🚀 Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Deployment branch
-          folder: dist/Todo-List/browser  # Output folder (Check `angular.json` build path)
+          branch: gh-pages
+          folder: dist/Todo-List/browser
+          clean: true
+          single-commit: true
