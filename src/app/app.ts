@@ -1,4 +1,4 @@
-import { Component, ComponentDecorator } from '@angular/core';
+import { Component, ComponentDecorator, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Todos } from './MyComponents/todos/todos';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login';
 import { RegisterComponent } from "./register/register";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -30,23 +31,23 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 // export class AppModule { }
 
 
-export class App {
+export class App implements OnInit {
    title = 'Todo-List';
    isLoggedIn = false;
    isAlreasdyRegistered = false;
    isLoginRoute = false;
+constructor(private router: Router) {}
 
-   constructor(private router: Router) {
-  //  Check immediately on load
-  const currentUrl = this.router.url;
-  this.isLoginRoute = currentUrl === '/login' || currentUrl === '/register';
 
-  //  Keep listening for changes after that
-  this.router.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      this.isLoginRoute = event.url === '/login' || event.url === '/register';
-    }
-  });
+  ngOnInit() {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.isLoginRoute =
+          event.urlAfterRedirects.startsWith('/login') ||
+          event.urlAfterRedirects.startsWith('/register');
+      });
+  }
 }
-}
+
 
